@@ -23,36 +23,6 @@ jobs:
     
     - name: Run
       run: |
-        go run ./little-go-book/chapter-1/hello-world/main.go
-        go run ./little-go-book/chapter-1/imports/main.go Foo
-
-#     - name: Test
-#       run: go test -v ./...
-name: Go
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.18
-
-#     - name: Build
-#       run: go build -v ./...
-    
-    - name: Run
-      run: |
         go run ./src/main.go
 
 #     - name: Test
