@@ -1,5 +1,12 @@
-package main
+package template
 
+import (
+	"fmt"
+
+	"example.com/go-template/src/template"
+)
+
+//nolint:unused
 func main() {
-	println("Hello World")
+	fmt.Println(template.Test())
 }
