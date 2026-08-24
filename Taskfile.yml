@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build project without output
+    cmds:
+      - go build ./...
+
+  test:
+    desc: Run unit tests
+    cmds:
+      - go test ./...
+
+  coverage:
+    desc: Run unit tests with code coverage
+    cmds:
+      - go test -cover ./...
+  
+  lint:
+    desc: Lint Go code
+    cmds:
+      - go vet ./...
+      - golangci-lint run
