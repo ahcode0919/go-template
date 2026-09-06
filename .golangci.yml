@@ -1,0 +1,35 @@
+version: "2"
+linters:
+  # `default: none` + an explicit enable list, so upgrading golangci-lint
+  # doesn't silently change which linters run. Add/remove freely below.
+  default: none
+  enable:
+    - errcheck
+    - govet
+    - ineffassign
+    - misspell
+    - revive
+    - staticcheck
+    - unused
+  settings:
+    # revive's "exported" rule requires doc comments on exported
+    # identifiers. Drop this rule (or revive entirely) if that's too strict.
+    revive:
+      rules:
+        - name: exported
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
