@@ -26,8 +26,8 @@ func main() {
 	fmt.Print("Enter module name (github.com/user/modulename):")
 	scanner.Scan()
 	input := scanner.Text()
-	
-	err := replaceLine("./go.mod", 0, "module " + input)
+
+	err := replaceLine("./go.mod", 0, "module "+input)
 
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error modifying go.mod:", err)
