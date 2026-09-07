@@ -26,8 +26,28 @@ jobs:
     - name: Build
       run: go build -v ./...
     
-    - name: Test
-      run: go test -v ./...
+    - name: Test with coverage
+      run: go test -v -coverprofile=coverage.out ./...
+
+    - name: Coverage summary
+      run: |
+        go tool cover -func=coverage.out | tee coverage.txt
+        echo "## Coverage" >> "$GITHUB_STEP_SUMMARY"
+        echo '```' >> "$GITHUB_STEP_SUMMARY"
+        cat coverage.txt >> "$GITHUB_STEP_SUMMARY"
+        echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage
+        path: coverage.out
+
+    - name: Enforce coverage threshold
+      env:
+        COVERAGE_THRESHOLD: "0"
+      run: |
+        ./scripts/coverage_check.sh ./coverage.out $COVERAGE_THRESHOLD
 
     - name: Run
       run: |

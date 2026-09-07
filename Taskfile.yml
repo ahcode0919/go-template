@@ -14,7 +14,9 @@ tasks:
   coverage:
     desc: Run unit tests with code coverage
     cmds:
-      - go test -cover ./...
+      - go test -cover -coverprofile=coverage.out ./...
+      - go tool cover -func=coverage.out
+      - ./scripts/coverage_check.sh coverage.out 0
   
   lint:
     desc: Lint Go code
